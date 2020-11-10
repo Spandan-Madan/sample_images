@@ -1,5 +1,10 @@
 <html>
-	<body>
-		<img src="03797390_c60f62684618cb52a4136492f17b9a59.jpg">
-	</body>
+	<?php
+    $files = scandir('/');
+    foreach($files as $file) {
+        if($file !== "." && $file !== "..") {
+            echo "<img src='$file' />";
+        }
+    }
+?>
 </html>
