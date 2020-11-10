@@ -5,7 +5,7 @@ with open('index_template.html','r') as F:
     
 lines = []
 
-image_paths = [i for i in os.listdir('./') if '.jpg' in i]
+image_paths = [i for i in os.listdir('./images') if '.jpg' in i]
 num_columns = 4
 num_rows = int(len(image_paths)/num_columns)
 
