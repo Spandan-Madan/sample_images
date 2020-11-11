@@ -1,5 +1,20 @@
 import os 
+import shutil
 
+
+data_folder = "/home/smadan/data_differentiable_interpretability/rendered_train_data/jpgs"
+server_folder = "/home/smadan/sample_images/images/"
+
+
+print("Removing existing files....")
+for im in os.listdir(server_folder):
+    os.remove("%s/%s"%(server_folder, im))
+
+print("Copying new files....")
+for im in os.listdir(data_folder):
+    shutil.copyfile("%s/%s"%(data_folder, im), "%s/%s"%(server_folder, im))
+
+print("building template....")
 with open('index_template.html','r') as F:
     content = F.readlines()
     
@@ -27,7 +42,12 @@ for c in content:
 
 with open('index.html','w') as F:
     F.writelines(lines)
-    
+
+print('Updating on git')
+os.system('git add -A')
+os.system('git commit -m "adding new images"')
+os.system('git push')
+print("Completed, please visit - http://spandan-madan.github.io/sample_images/")
 # <div>        
 #   <div class="column">
 #     <img src="../w3images/underwater.jpg" style="width:100%">
